@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+
+
+  
+<link rel="stylesheet" type="text/css" href="main.css">
+ 	
+	<link href='https://fonts.googleapis.com/css?family=Corben' rel='stylesheet' type='text/css'>
+<script>
+$(document).ready(function(){
+	$(".plus").click(function(){
+		clickedId = ($(this).parent().attr("id"));
+		$(".value").html(function(){
+			console.log(clickedId);
+			divId = $(this).parent().attr("id");
+			if(clickedId === divId){
+			return parseInt(($(this).text()))+1;
+			}
+		})
+	})
+
+	$(".minus").click(function(){
+		clickedId = ($(this).parent().attr("id"));
+		$(".value").html(function(){
+			console.log(clickedId);
+			divId = $(this).parent().attr("id");
+			if(clickedId === divId){
+			return parseInt(($(this).text()))-1;
+			}
+		})
+	})
+
+	$("#display").click(function(){
+		startPomodoro();
+			}
+		)
+
+	function startPomodoro(){
+		    window.m = parseInt(($("#sessionVal").text()))-1;
+		    window.s = 59;
+		    m = checkTime(m);
+		    s = checkTime(s);
+		    writeTime();
+		    var t = setTimeout(incrementTime, 1000);
+
+	function incrementTime(){
+		if(window.m == 0 && window.s == 0){
+			switchState()
+		}
+		else if(window.s > 0){
+			window.s -= 1;
+		}
+		else{
+			window.m -= 1;
+			window.s = 59;
+		}
+		writeTime();
+		 var rewrite = setTimeout(incrementTime, 1000);
+	}
+
+	function switchState(){
+
+		if( ($("#currentState").text()) === "Session") {
+			window.m = parseInt(($("#breakVal").text()))-1;
+			$("#currentState").html("Break")
+			$("body").css("background-color","#B71C1C")
+			}
+		else{
+			window.m = parseInt(($("#sessionVal").text()))-1;
+			$("#currentState").html("Session")
+		    $("body").css("background-color","#173e43")
+
+		}
+		window.s = 59;
+	}
+
+	function writeTime(){
+		document.getElementById('timer').innerHTML =
+		 checkTime(m) + ":" + checkTime(s);
+	}
+
+		function checkTime(i) {
+		    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+		    return i;
+		}
+	}
+});
+</script>
+</head>
+<body>
+<div id ="main">
+	<div id="title">
+	Pomodoro Clock
+	</div>
+	<div id="settings">
+		<div id="settingsContainer">
+			<div class="box" id="break">
+				Break Length: <br><div class="settingsNum" id="breakNum"><span class="minus">-</span><span class="value" id ="breakVal"> 5</span> <span class="plus">+</span></div>
+			</div>
+			<div class="box" id="session">
+				Session Length:<br> <div class="settingsNum" id="settingsNum"><span class="minus">-</span><span class="value" id="sessionVal"> 25 </span><span class="plus">+</span></div>
+			</div>
+		</div>
+	</div>
+	<div id="display">
+	<div id="colored"></div>
+		<div id="currentState">Session</div>
+		<div id ="timer">
+			25:00
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

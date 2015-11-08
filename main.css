@@ -1,0 +1,90 @@
+body{
+	background-color: #173e43;
+	height: 100%;
+	color: #dddfd4;
+  
+}
+
+#title{
+	margin-top: 1em;
+	font-size: 5em;
+	text-align: center;
+	font-family: 'Corben', cursive;
+}
+
+#settings{
+	margin-top: 3em;
+	font-size: 1.25em;
+}
+
+.settingsNum{
+	color: #fae596;
+	font-size: 2.5em;
+}
+
+#settingsContainer{
+  width: 25%	;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.plus, .minus{
+	color: #3fb0ac;
+  animation-name: pulse;
+  animation-duration: .5s;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+}
+
+.minus{
+	float:left;
+}
+
+.plus{
+	float:right;
+}
+
+#display{
+	border: .15em;
+	border-style: solid;
+	border-color: #fae596;
+	border-radius: 50%;
+	height: 25em;
+	width: 25em;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	margin-top: 2em;
+	animation: grow 60s 0s infinite alternate; 
+}
+
+.box{
+	 display: inline-block;
+  	 text-align: center;
+}
+
+
+#session{
+	float: right;
+}
+
+#timer{
+	margin-top: 1.5em;
+	font-size: 4em;
+}
+
+#currentState{
+	margin-top: 1.5em;
+	font-size: 3em;
+}
+
+
+
+@keyframes grow{
+	0%{background-color: #173e43; }
+	100%{background-color: #3fb0ac;}
+}
